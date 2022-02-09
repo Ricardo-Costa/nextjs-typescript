@@ -5,7 +5,7 @@ type TweetPageProps = {
 }
 
 const TweetPage: NextPage<TweetPageProps> = (props: TweetPageProps) => {
-  console.log(props)
+  // console.log(props)
   return (
     <div>
       <h1>Meu Tweet</h1>
@@ -17,6 +17,11 @@ const TweetPage: NextPage<TweetPageProps> = (props: TweetPageProps) => {
 export default TweetPage
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+
+  console.log('Executa do lado do servidor...')
+
+  // acessar db, etc
+
   return {
     props: {
       name: 'Fulk Cycle'
