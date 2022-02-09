@@ -4,6 +4,7 @@ import { GetStaticProps, NextPage } from "next";
 type TweetPageProps = {
   name: string
   posts: Post[]
+  time: number
 }
 
 type Post = {
@@ -25,10 +26,11 @@ const ShowPosts = (props: { posts: Post[] }) => {
 
 const StaticPage: NextPage<TweetPageProps> = (props: TweetPageProps) => {
   // console.log(props)
-  const { posts } = props
+  const { posts, time } = props
   return (
     <div>
       <h1>Meu Tweet</h1>
+      <b>{time}</b>
       <p>Vales: {props.name}</p>
       <ShowPosts posts={posts}></ShowPosts>
     </div>
@@ -54,7 +56,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       name: 'Fulk Cycle',
-      posts
-    }
+      posts,
+      time: Date.now()
+    },
+    revalidate: 10, // 10 seconds
   }
 }
